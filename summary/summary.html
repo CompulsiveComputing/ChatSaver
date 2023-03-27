@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>File Summary Generator</title>
+    <link rel="stylesheet" href="summary.css">
+    <script src="summary.js" defer></script>
+  </head>
+  <body>
+    <h1>File Summary Generator</h1>
+    <div class="container">
+      <div class="radio-buttons">
+        <label><input type="radio" name="file-type" value="html" checked>HTML</label>
+        <label><input type="radio" name="file-type" value="css">CSS</label>
+        <label><input type="radio" name="file-type" value="js">JavaScript</label>
+      </div>
+      <div class="textareas">
+        <textarea class="input" id="file-input" placeholder="Paste file contents here"></textarea>
+        <textarea class="output" id="file-summary" placeholder="Summary output will appear here" readonly></textarea>
+      </div>
+      <button id="generate-summary" onclick="generateFileSummary()">Generate Summary</button>
+    </div>
+  </body>
+</html>

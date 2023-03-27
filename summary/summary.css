@@ -1,0 +1,43 @@
+/* Basic styling for the interface */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+  }
+  h1 {
+    text-align: center;
+    margin-top: 50px;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+  .input,
+  .output {
+    width: 45%;
+    height: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+  }
+  .output {
+    background-color: #fff;
+    color: #000;
+  }
+  button {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  button:hover {
+    background-color: #3e8e41;
+  }

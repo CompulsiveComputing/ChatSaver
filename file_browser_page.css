@@ -1,0 +1,56 @@
+/* Styles for the directory tree */
+#directory-tree {
+    margin: 1em;
+  }
+  
+  #directory-tree ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #directory-tree li {
+    margin-left: 1em;
+    position: relative;
+  }
+  
+  #directory-tree li:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -0.5em;
+    border-left: 1px solid #ccc;
+  }
+  
+  #directory-tree li:last-child:before {
+    height: auto;
+    top: 0.5em;
+    bottom: 0;
+  }
+  
+  #directory-tree a {
+    display: inline-block;
+    padding: 0.25em 0;
+  }
+  
+  /* Styles for the file list */
+  #file-list {
+    margin: 1em;
+  }
+  
+  #file-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #file-list li {
+    margin-bottom: 0.5em;
+  }
+  
+  #file-list li a {
+    display: inline-block;
+    padding: 0.25em 0;
+  }
+  

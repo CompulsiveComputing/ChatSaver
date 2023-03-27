@@ -1,0 +1,36 @@
+{
+    "manifest_version": 2,
+    "name": "ChatSaver",
+    "version": "1.0",
+    "description": "Automatically save responses from predefined URLs to a predefined folder in real-time when they occur",
+    "permissions": [
+        "downloads",
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>",
+        "downloads.open",
+        "notifications",
+        "storage"
+    ],
+    "background": {
+        "page": "background.html"
+    },
+    "browser_action": {
+        "default_icon": "icon.svg",
+        "default_popup": "popup_window.html",
+        "default_title": "ChatSaver"
+    },
+    "options_ui": {
+        "page": "settings_page.html",
+        "browser_style": true
+    },
+    "web_accessible_resources": [
+        "file_browser_page.html",
+        "file_browser_page.css",
+        "file_browser_page.js",
+        "Parser_Manager.js",
+        "File_Folder_Manager.js",
+        "Settings_Manager.js",
+        "utils.js"
+    ]
+}

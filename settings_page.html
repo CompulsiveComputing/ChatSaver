@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ChatSaver Settings</title>
+  <link rel="stylesheet" href="settings_page.css">
+</head>
+<body>
+  <h1>ChatSaver Settings</h1>
+  <div id="recording-urls">
+    <h2>Recording URLs</h2>
+    <ul id="url-list"></ul>
+    <form id="add-url-form">
+      <label for="new-url">Add URL:</label>
+      <input type="url" id="new-url" required>
+      <input type="submit" value="Add">
+    </form>
+  </div>
+  <div id="file-size-constraints">
+    <h2>File Size Constraints</h2>
+    <form id="size-constraints-form">
+      <label for="min-size">Minimum size (bytes):</label>
+      <input type="number" id="min-size" min="0" step="1" value="0">
+      <label for="max-size">Maximum size (bytes):</label>
+      <input type="number" id="max-size" min="0" step="1" value="0">
+      <input type="submit" value="Update Constraints">
+    </form>
+  </div>
+  <div id="file-extension">
+    <h2>File Extension</h2>
+    <form id="extension-form">
+      <label for="file-extension">Extension:</label>
+      <input type="text" id="file-extension" value=".txt">
+      <input type="submit" value="Update Extension">
+    </form>
+  </div>
+  <div id="recordings-folder">
+    <h2>Recordings Folder</h2>
+    <form id="folder-form">
+      <label for="folder">Folder:</label>
+      <input type="text" id="folder" readonly>
+      <button id="change-folder">Change</button>
+    </form>
+  </div>
+  <div id="recordings-parsers">
+    <h2>Recordings Parsers</h2>
+    <ul id="parser-list"></ul>
+    <button id="add-parser-button">Add New Parser</button>
+  </div>
+  <div id="auto-delete-settings">
+    <h2>Auto-Delete</h2>
+    <form id="auto-delete-form">
+      <label for="auto-delete-checkbox">Enable auto-delete:</label>
+      <input type="checkbox" id="auto-delete-checkbox" name="auto-delete-checkbox" checked>
+      <br>
+      <label for="min-age">Minimum age (days):</label>
+      <input type="number" id="min-age" min="0" step="1" value="7">
+      <input type="submit" value="Update Settings">
+    </form>
+  </div>
+  <div id="file-browser">
+    <h2>Recorded Responses Browser</h2>
+    <button id="open-file-browser">Open File Browser</button>
+    <p>Current recordings folder:</p>
+    <label id="folder-label"></label>
+  </div>
+  <div id="auto-save-settings">
+    <h2>Auto-Save</h2>
+    <form id="auto-save-form">
+      <label for="auto-save-checkbox">Enable auto-save:</label>
+      <input type="checkbox" id="auto-save-checkbox" name="auto-save-checkbox" checked>
+      <br>
+      <label for="save-interval">Save interval (seconds):</label>
+      <input type="number" id="save-interval" min="1" step="1" value="10">
+      <input type="submit" value="Update Settings">
+    </form>
+  </div>
+
+  <script src="settings_page.js"></script>
+</body>
+
+</html>
