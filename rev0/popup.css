@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin: 8px;
+}
+
+button {
+    background-color: yellow;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+}
+
+button:hover {
+    background-color: green;
+}
+
+#folderPath {
+    margin-top: 8px;
+}
