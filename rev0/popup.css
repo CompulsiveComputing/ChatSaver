@@ -1,27 +1,80 @@
 body {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    margin: 8px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #222;
+  background-color: #9c9c9c;
 }
 
+
 button {
-    background-color: yellow;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
+  background-color: #007bff;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 12px 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 button:hover {
-    background-color: green;
+  background-color: #0056b3;
 }
 
-#folderPath {
-    margin-top: 8px;
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#toggleButton {
+  background-color: #dc3545;
+}
+
+#toggleButton.recording {
+  background-color: #28a745;
+}
+
+#downloadButton {
+  background-color: #fff;
+}
+
+#downloadButton:not(:disabled):hover {
+  background-color: #444;
+}
+
+#clearButton {
+  background-color: #ddd;
+  color: #222;
+}
+
+#clearButton:not(:disabled):hover {
+  background-color: #bbb;
+}
+
+.download {
+  margin-left: auto;
+}
+
+#notifications {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.notification {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.notification .title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.notification .date {
+  color: #aaa;
+  font-size: 12px;
 }

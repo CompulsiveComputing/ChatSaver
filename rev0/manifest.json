@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "ChatSaver",
     "version": "1.0",
-    "description": "Automatically saves responses from predefined URLs to a predefined folder in real-time when they occur.",
+    "description": "",
     "icons": {
         "48": "icons/icon.svg",
         "96": "icons/icon.svg"
@@ -10,15 +10,15 @@
     "permissions": [
         "webRequest",
         "webRequestBlocking",
-        "fileSystemProvider",
+        "storage",
         "<all_urls>",
         "activeTab",
         "notifications"
     ],
     "browser_action": {
         "default_icon": {
-            "19": "icons/icon-gray-bg.svg",
-            "38": "icons/icon-gray-bg.svg"
+            "19": "icons/icon.svg",
+            "38": "icons/icon.svg"
         },
         "default_title": "ChatSaver",
         "default_popup": "popup.html"
@@ -28,6 +28,7 @@
             "background.js"
         ]
     },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "browser_specific_settings": {
         "gecko": {
             "id": "chatsaver@compulsivecomputing.ca",

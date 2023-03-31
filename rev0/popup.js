@@ -1,44 +1,111 @@
-/* popup.js */
-var recording = false;
-var toggleButton = document.getElementById('toggleButton');
-var folderPathText = document.getElementById('folderPath');
-var notifications = document.getElementById('notifications');
+const ui = {
+    toggle: { button: null, label: null },
+    download: { button: null, label: null },
+    clear: { button: null, label: null },
+    notifications: { element: null }
+};
 
-/* Set the icon and text based on the recording state */
-function setIconAndText() {
-  if (recording) {
-    toggleButton.style.background = 'green';
-    toggleButton.textContent = 'Recording';
-  } else {
-    toggleButton.style.background = 'yellow';
-    toggleButton.textContent = 'Not Recording';
-  }
+let recording = true;
+
+document.addEventListener("DOMContentLoaded", init);
+
+async function init() {
+    listenForBackgroundMessages();
+    bindUI();
+    await browser.runtime.sendMessage({ action: "setRecordingState", recording: recording });
+    await updateUI();
 }
 
-/* Set the initial icon and text */
-setIconAndText();
+function listenForBackgroundMessages() {
+    browser.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
+        if (request.action === "updateUI") {
+            updateUI();
+        }
+        if (request.action === "responseReceived") {
+            await updateButtons();
+        }
+        return true;
+    });
 
-/* Set the folder path text */
-updateFolderPath();
-
-/* Add an event listener to the toggle button */
-toggleButton.addEventListener('click', function () {
-  /* Toggle the recording state */
-  recording = !recording;
-  /* Set the icon and text based on the recording state */
-  setIconAndText();
-  /* Send a message to the background script to toggle the recording state */
-  browser.runtime.sendMessage({recording: recording});
-});
-
-/* Display a notification */
-function showNotification(message) {
-  notifications.innerHTML += message + '<br>';
 }
 
-/* Update the folder path text */
-function updateFolderPath() {
-  browser.runtime.sendMessage({getFolderPath: true}, function (response) {
-    folderPathText.textContent = response.folderPath;
-  });
+function bindToggleUI() {
+    ui.toggle.button = document.getElementById("toggleButton");
+    ui.toggle.label = document.getElementById("toggleButtonLabel");
+    ui.toggle.button.addEventListener("click", toggleClicked);
+}
+
+function bindDownloadUI() {
+    ui.download.button = document.getElementById("downloadButton");
+    ui.download.label = document.getElementById("downloadButtonLabel");
+    ui.download.button.addEventListener("click", download);
+}
+
+function bindClearUI() {
+    ui.clear.button = document.getElementById("clearButton");
+    ui.clear.label = document.getElementById("clearButtonLabel");
+    ui.clear.button.addEventListener("click", clearClicked);
+}
+
+function bindNotificationsUI() {
+    ui.notifications.element = document.getElementById("notifications");
+}
+
+function bindUI() {
+    bindToggleUI();
+    bindDownloadUI();
+    bindClearUI();
+    bindNotificationsUI();
+}
+
+async function clearClicked() {
+    try {
+        await browser.runtime.sendMessage({ action: "clearResponses" });
+        await updateUI();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+async function getPopupState() {
+    const numResponses = await browser.runtime.sendMessage({ action: "getResponseCount" });
+
+    ui.download.button.disabled = (numResponses === 0);
+
+    updateToggleButton();
+}
+
+
+async function download() {
+    await browser.runtime.sendMessage({ action: "downloadResponses" });
+}
+
+async function toggleClicked() {
+    recording = !recording;
+    await browser.runtime.sendMessage({ action: "setRecordingState", recording: recording });
+}
+
+async function updateUI() {
+    await updateToggleButton();
+    await updateNotifications();
+}
+
+function updateToggleButton() {
+    ui.toggle.button.classList.toggle("recording", recording);
+    if (recording) {
+        ui.toggle.button.style.backgroundColor = "green";
+        ui.toggle.button.title = "Stop recording";
+        ui.toggle.label.textContent = "Stop Recording";
+    } else {
+        ui.toggle.button.style.backgroundColor = "yellow";
+        ui.toggle.button.title = "Start recording";
+        ui.toggle.label.textContent = "Start Recording";
+    }
+}
+
+async function updateNotifications() {
+    const responseCount = await browser.runtime.sendMessage({ action: "getResponseCount" });
+    const notificationsElement = ui.notifications.element;
+    notificationsElement.innerHTML = "";
 }
