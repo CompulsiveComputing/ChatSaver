@@ -65,7 +65,7 @@ async function onBeforeRequestListener(details) {
         };
 
         filter.onstop = (event) => {
-            str += decoder.decode(); // Add this line to ensure all data is processed
+            str += decoder.decode();
             filter.write(encoder.encode(str));
             filter.close();
             saveResponse(details.url, str);

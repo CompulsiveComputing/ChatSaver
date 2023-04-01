@@ -26,7 +26,6 @@ body {
     margin-bottom: 0.5em;
 }
 
-
 #menu-button {
     font-size: 1rem;
     padding: 0.5em;
@@ -39,7 +38,6 @@ body {
 #menu-button:hover {
     background-color: #e8e8e8;
 }
-
 
 .hidden {
     display: none;

@@ -1,4 +1,3 @@
-/* Styles for the directory tree */
 #directory-tree {
     margin: 1em;
   }
@@ -34,7 +33,6 @@
     padding: 0.25em 0;
   }
   
-  /* Styles for the file list */
   #file-list {
     margin: 1em;
   }

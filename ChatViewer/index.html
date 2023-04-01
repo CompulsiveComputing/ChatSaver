@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="chatexplorer.js"></script>
+    <link rel="stylesheet" href="chatexplorer.css">
+    <title>Chat Explorer</title>
+</head>
+
+<body>
+    <article class="chat_explorer">
+        <header>
+            <h1>Chat Explorer</h1>
+            <h2>Unloaded</h2>
+            <nav id="traversalButtons">
+            </nav>
+            <input type="text" id="searchInput" placeholder="Search...">
+        </header>
+        <aside>
+            <section class="files">
+                <input type="file" id="fileInput" accept=".json" multiple>
+                <button type="button" id="loadButton">Load JSON file(s)</button>
+            </section>
+        </aside>
+        <main>
+            <section class="">
+                <div id="collatedContent">
+                </div>
+                <div id="traversalButtons">
+                </div>
+            </section>
+        </main>
+        <footer>
+            <section class="status_details">
+
+            </section>
+            <section class="links">
+                <a href="compulsivecomputing.ca/">My Website</a> 
+                <a href="https://www.patreon.com/CompulsiveComputing">My Patreon</a>
+            </section>
+        </footer>
+        <modal class="dropzone">
+            <span>Drop files here</span>
+            <input type="file" id="fileInput" style="display:none;" multiple />
+            <label for="fileInput" class="fileInputLabel">or click to select files</label>
+        </modal>
+    </article>
+</body>
+
+</html>

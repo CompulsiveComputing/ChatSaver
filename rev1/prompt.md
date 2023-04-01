@@ -109,7 +109,7 @@ body{font-family: Arial, sans-serif; margin: 1rem;}#menu{position: relative; dis
  Windows
 
 ## Tasks
- -Iterate and implement code in/on/for background.js
+ -Iterate & update & deduplicate code where respectively relevant
  -Give code-snippets that user can use to update their files
  -Find inconsistencies or duplications in current code to update, merge duplicates if functionality is missing from one
  -Find missing functions detailed in the outline
