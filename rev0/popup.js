@@ -83,6 +83,7 @@ async function download() {
 
 async function toggleClicked() {
     recording = !recording;
+    updateToggleButton();
     await browser.runtime.sendMessage({ action: "setRecordingState", recording: recording });
 }
 
@@ -94,11 +95,9 @@ async function updateUI() {
 function updateToggleButton() {
     ui.toggle.button.classList.toggle("recording", recording);
     if (recording) {
-        ui.toggle.button.style.backgroundColor = "green";
         ui.toggle.button.title = "Stop recording";
         ui.toggle.label.textContent = "Stop Recording";
     } else {
-        ui.toggle.button.style.backgroundColor = "yellow";
         ui.toggle.button.title = "Start recording";
         ui.toggle.label.textContent = "Start Recording";
     }

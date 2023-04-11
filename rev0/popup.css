@@ -28,15 +28,15 @@ button:disabled {
 }
 
 #toggleButton {
-  background-color: #dc3545;
+  background-color: #a02a36;
 }
 
 #toggleButton.recording {
-  background-color: #28a745;
+  background-color: #227235;
 }
 
 #downloadButton {
-  background-color: #fff;
+  background-color: #2a2424;
 }
 
 #downloadButton:not(:disabled):hover {
