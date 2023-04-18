@@ -12,12 +12,13 @@ document.addEventListener("DOMContentLoaded", init);
 async function init() {
     listenForBackgroundMessages();
     bindUI();
-    await browser.runtime.sendMessage({ action: "setRecordingState", recording: recording });
+    await chrome.runtime.sendMessage({ action: "setRecordingState", recording: recording });
     await updateUI();
 }
 
+
 function listenForBackgroundMessages() {
-    browser.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
+    chrome.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
         if (request.action === "updateUI") {
             updateUI();
         }

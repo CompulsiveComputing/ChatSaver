@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "ChatSaver",
     "version": "1.0",
     "description": "",
@@ -7,32 +7,20 @@
         "48": "icons/icon.svg",
         "96": "icons/icon.svg"
     },
+    "action": {
+        "default_icon": {
+          "48": "icons/icon.svg"
+        },
+        "default_popup": "popup.html"
+      },
     "permissions": [
         "webRequest",
         "webRequestBlocking",
         "storage",
-        "<all_urls>",
         "activeTab",
         "notifications"
     ],
-    "browser_action": {
-        "default_icon": {
-            "19": "icons/icon.svg",
-            "38": "icons/icon.svg"
-        },
-        "default_title": "ChatSaver",
-        "default_popup": "popup.html"
-    },
     "background": {
-        "scripts": [
-            "background.js"
-        ]
-    },
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
-    "applications": {
-        "gecko": {
-            "id": "chatsaver@compulsivecomputing.ca",
-            "strict_min_version": "67.0"
-        }
-    }
+        "scripts": ["background.js"]
+      }
 }

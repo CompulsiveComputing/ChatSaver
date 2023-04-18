@@ -1,0 +1,12 @@
+{
+    "manifest_version": 3,
+    "name": "Test Download Extension",
+    "version": "1.0",
+    "description": "A browser extension that initiates the saving of a text file containing 'test download' via the downloads API.",
+    "permissions": ["downloads"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.svg"
+    }
+  }
+  

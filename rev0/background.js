@@ -6,8 +6,8 @@ initBackground();
 
 function initBackground() {
     console.log("initBackground start");
-    browser.runtime.onMessage.addListener(messageListener);
-    browser.webRequest.onBeforeRequest.addListener(
+    chrome.runtime.onMessage.addListener(messageListener);
+    chrome.webRequest.onBeforeRequest.addListener(
         onBeforeRequestListener,
         urlFilter,
         ["blocking"]
@@ -55,7 +55,7 @@ async function messageListener(request, sender, sendResponse) {
 async function onBeforeRequestListener(details) {
     console.log("onBeforeRequestListener", details, recording);
     if (recording) {
-        let filter = browser.webRequest.filterResponseData(details.requestId);
+        let filter = chrome.webRequest.filterResponseData(details.requestId);
         let decoder = new TextDecoder("utf-8");
         let encoder = new TextEncoder();
         let str = "";
@@ -81,30 +81,30 @@ async function saveResponse(url, responseBody) {
     const timestamp = new Date().toISOString();
     const domain = new URL(url).hostname;
 
-    const storedResponses = (await browser.storage.local.get(browserDBKey))[browserDBKey] || {};
+    const storedResponses = (await chrome.storage.local.get(browserDBKey))[browserDBKey] || {};
     if (!storedResponses[domain]) {
         storedResponses[domain] = {};
     }
     storedResponses[domain][timestamp] = responseBody;
 
-    await browser.storage.local.set({ [browserDBKey]: storedResponses });
+    await chrome.storage.local.set({ [browserDBKey]: storedResponses });
 }
 
 
 
 function showNotification(message) {
-    browser.notifications.create({
+    chrome.notifications.create({
         type: "basic",
         title: "ChatSaver",
         message,
-        iconUrl: browser.extension.getURL("icons/icon.png")
+        iconUrl: chrome.extension.getURL("icons/icon.png")
     });
 }
 
 async function clearResponses() {
     if (confirm("Are you sure you want to clear all saved responses?")) {
         try {
-            await browser.storage.local.remove(browserDBKey);
+            await chrome.storage.local.remove(browserDBKey);
             await updateUI();
             showNotification("All responses cleared.");
         } catch (error) {
@@ -140,7 +140,7 @@ async function download(storedResponses) {
 
 async function downloadResponses() {
     try {
-        const result = await browser.storage.local.get(browserDBKey);
+        const result = await chrome.storage.local.get(browserDBKey);
         const storedResponses = result[browserDBKey];
         await download(storedResponses);
     } catch (error) {
@@ -149,7 +149,7 @@ async function downloadResponses() {
 }
 
 async function getResponseCount() {
-    const result = await browser.storage.local.get(browserDBKey);
+    const result = await chrome.storage.local.get(browserDBKey);
     const storedResponses = result[browserDBKey];
     if (storedResponses) {
         return Object.values(storedResponses).reduce((acc, curr) => acc + Object.keys(curr).length, 0);
@@ -159,10 +159,10 @@ async function getResponseCount() {
 }
 
 async function updateUI() {
-    await browser.runtime.sendMessage({ action: "updateUI" });
+    await chrome.runtime.sendMessage({ action: "updateUI" });
 }
 
 async function getStoredResponses() {
-    const result = await browser.storage.local.get(browserDBKey);
+    const result = await chrome.storage.local.get(browserDBKey);
     return result[browserDBKey] || {};
 }
